@@ -52,12 +52,12 @@ func threeSum1(nums []int) [][]int {// 比解法1要好理解,用map来处理.
 	for key := range counter {
 		uniqNums = append(uniqNums, key)
 	}
-	sort.Ints(uniqNums)  //调用sort.ints 对整数进行排序
+	sort.Ints(uniqNums)  //调用sort.ints 对整数进行排序, 因为输出结果是去重的所以这里面需要
 
 	for i := 0; i < len(uniqNums); i++ {
 		if (uniqNums[i]*3 == 0) && counter[uniqNums[i]] >= 3 {
 			res = append(res, []int{uniqNums[i], uniqNums[i], uniqNums[i]})
-		}
+		}//只用一个数字.
 		for j := i + 1; j < len(uniqNums); j++ {
 			if (uniqNums[i]*2+uniqNums[j] == 0) && counter[uniqNums[i]] > 1 {
 				res = append(res, []int{uniqNums[i], uniqNums[i], uniqNums[j]})
@@ -66,7 +66,7 @@ func threeSum1(nums []int) [][]int {// 比解法1要好理解,用map来处理.
 				res = append(res, []int{uniqNums[i], uniqNums[j], uniqNums[j]})
 			}
 			c := 0 - uniqNums[i] - uniqNums[j]
-			if c > uniqNums[j] && counter[c] > 0 {
+			if c > uniqNums[j] && counter[c] > 0 {// 因为c如果比j小或者等于j,说明这个组合之前已经考虑过了.1
 				res = append(res, []int{uniqNums[i], uniqNums[j], c})
 			}
 		}

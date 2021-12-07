@@ -1,7 +1,7 @@
 package leetcode
 
 import (
-	"github.com/halfrost/LeetCode-Go/structures"
+	"structures"
 )
 
 // ListNode define
@@ -21,8 +21,8 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 			return head
 		}
 		node = node.Next
-	}
-	newHead := reverse(head, node)
+	}//node现在是第k+1个,node是下一轮的起点.
+	newHead := reverse(head, node)  //反转一个链表,输入的是链表的头和尾. 头到尾的前一个进行反转.
 	head.Next = reverseKGroup(node, k)
 	return newHead
 }

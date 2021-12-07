@@ -1,21 +1,25 @@
 package leetcode
 
 // 解法一
-func removeDuplicates(nums []int) int {
+func removeDuplicates(nums []int) int { //双指针来处理.
+// 每次找到下一个数字跟上一个数字的第二个重复位置进行赋值.
 	if len(nums) == 0 {
 		return 0
 	}
 	last, finder := 0, 0
+
+//last是上一个数字的初始索引,finder是下一个数字的第一个索引
 	for last < len(nums)-1 {
 		for nums[finder] == nums[last] {
 			finder++
 			if finder == len(nums) {
 				return last + 1
 			}
-		}
-		nums[last+1] = nums[finder]
-		last++
+		}//找到finder的索引
+		nums[last+1] = nums[finder]//赋值过来
+		last++ // last
 	}
+
 	return last + 1
 }
 

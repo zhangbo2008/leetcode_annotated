@@ -23,10 +23,13 @@ func letterCombinations(digits string) []string {
 		return []string{}
 	}
 	res = []string{}
-	findCombination(&digits, 0, "")
+	findCombination(&digits, 0, "")// 返回digits从0开始
 	return res
 }
 
+
+//这个地方传指针是因为digits可能非常长. 总复制一个新的会速度慢. 所以编程好的思路就是遇到大的数据就传指针.
+//下面的函数什么都不返回,而是直接在全局变量res上修改. //s是上次添加完之后的字符
 func findCombination(digits *string, index int, s string) {
 	if index == len(*digits) {
 		res = append(res, s)
@@ -35,10 +38,19 @@ func findCombination(digits *string, index int, s string) {
 	num := (*digits)[index]
 	letter := letterMap[num-'0']
 	for i := 0; i < len(letter); i++ {
-		findCombination(digits, index+1, s+string(letter[i]))
+		findCombination(digits, index+1, s+string(letter[i]))//深度遍历.
 	}
 	return
 }
+
+
+
+
+
+
+
+
+
 
 // 解法二 非递归
 func letterCombinations_(digits string) []string {

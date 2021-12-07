@@ -11,10 +11,10 @@ func threeSumClosest(nums []int, target int) int {
 	if n > 2 {
 		sort.Ints(nums)
 		for i := 0; i < n-2; i++ {
-			if i > 0 && nums[i] == nums[i-1] {
+			if i > 0 && nums[i] == nums[i-1] {// 因为i-1的情况已经讨论过了. i的情况再计算就重复了.因为已经排完序了.
 				continue
 			}
-			for j, k := i+1, n-1; j < k; {
+			for j, k := i+1, n-1; j < k; {// i取定,然后 j,k夹逼
 				sum := nums[i] + nums[j] + nums[k]
 				if abs(sum-target) < diff {
 					res, diff = sum, abs(sum-target)
@@ -27,6 +27,9 @@ func threeSumClosest(nums []int, target int) int {
 					j++
 				}
 			}
+
+
+
 		}
 	}
 	return res
